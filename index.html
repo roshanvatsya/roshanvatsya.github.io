@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Roshan Vatsya — Cloud & Infrastructure Engineer</title>
+<meta name="description" content="Roshan Vatsya — Cloud & Infrastructure Engineer. 4+ years in enterprise infrastructure, Azure, AWS, Nutanix, PowerShell automation."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0a0c10;
+  --bg2: #0f1117;
+  --bg3: #161b27;
+  --surface: #1a2035;
+  --border: rgba(99,132,255,0.12);
+  --border2: rgba(99,132,255,0.22);
+  --accent: #4f8eff;
+  --accent2: #00d4aa;
+  --accent3: #ff6b6b;
+  --text: #e8eaf0;
+  --text2: #8892a4;
+  --text3: #4a5568;
+  --mono: 'DM Mono', monospace;
+  --sans: 'Sora', sans-serif;
+  --radius: 8px;
+  --radius-lg: 14px;
+  --transition: 0.22s cubic-bezier(0.4,0,0.2,1);
+}
+[data-theme="light"] {
+  --bg: #f5f7fa;
+  --bg2: #ffffff;
+  --bg3: #eef1f6;
+  --surface: #ffffff;
+  --border: rgba(79,142,255,0.15);
+  --border2: rgba(79,142,255,0.3);
+  --text: #1a1f2e;
+  --text2: #4a5568;
+  --text3: #9aa5b4;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
+  transition:background var(--transition),color var(--transition);
+}
+::selection{background:var(--accent);color:#fff}
+a{color:var(--accent);text-decoration:none;transition:color var(--transition)}
+a:hover{color:var(--accent2)}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+/* Grid texture */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.4;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  z-index:100;
+  padding:0 2rem;
+  height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(10,12,16,0.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  transition:background var(--transition);
+}
+[data-theme="light"] nav{background:rgba(245,247,250,0.88)}
+.nav-logo{
+  font-family:var(--mono);
+  font-size:14px;
+  color:var(--accent);
+  letter-spacing:0.04em;
+}
+.nav-logo span{color:var(--accent2)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  font-size:13px;
+  font-weight:500;
+  color:var(--text2);
+  letter-spacing:0.03em;
+  position:relative;
+  padding-bottom:2px;
+}
+.nav-links a::after{
+  content:'';
+  position:absolute;bottom:0;left:0;width:0;height:1px;
+  background:var(--accent);
+  transition:width var(--transition);
+}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.theme-toggle{
+  background:none;border:1px solid var(--border2);
+  color:var(--text2);padding:6px 10px;
+  border-radius:var(--radius);cursor:pointer;
+  font-size:14px;transition:all var(--transition);
+}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text2);border-radius:1px;transition:all var(--transition)}
+.mobile-menu{
+  display:none;
+  position:fixed;top:60px;left:0;right:0;
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  padding:1.5rem;
+  z-index:99;
+  flex-direction:column;gap:1rem;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--text2);font-size:15px;padding:0.5rem 0;border-bottom:1px solid var(--border)}
+
+/* SECTIONS */
+section{position:relative;z-index:1}
+.container{max-width:1100px;margin:0 auto;padding:0 2rem}
+
+/* HERO */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding-top:60px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-glow{
+  position:absolute;
+  width:600px;height:600px;
+  background:radial-gradient(circle, rgba(79,142,255,0.08) 0%, transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.hero-inner{max-width:780px}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:12px;
+  color:var(--accent2);
+  border:1px solid rgba(0,212,170,0.25);
+  padding:5px 14px;border-radius:999px;
+  margin-bottom:2rem;
+  animation:fadeUp 0.6s ease both;
+}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+h1.hero-name{
+  font-size:clamp(2.8rem,6vw,5rem);
+  font-weight:700;
+  line-height:1.05;
+  letter-spacing:-0.03em;
+  color:var(--text);
+  margin-bottom:0.5rem;
+  animation:fadeUp 0.6s 0.1s ease both;
+}
+h1.hero-name span{color:var(--accent)}
+.hero-role{
+  font-family:var(--mono);
+  font-size:clamp(0.95rem,2vw,1.15rem);
+  color:var(--accent2);
+  margin-bottom:1.5rem;
+  animation:fadeUp 0.6s 0.2s ease both;
+}
+.hero-desc{
+  font-size:1.05rem;
+  color:var(--text2);
+  max-width:580px;
+  line-height:1.8;
+  margin-bottom:2.5rem;
+  animation:fadeUp 0.6s 0.3s ease both;
+}
+.hero-cta{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  animation:fadeUp 0.6s 0.4s ease both;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 24px;
+  border-radius:var(--radius);
+  font-size:14px;font-weight:500;
+  cursor:pointer;transition:all var(--transition);
+  text-decoration:none;
+}
+.btn-primary{
+  background:var(--accent);color:#fff;
+  border:1px solid var(--accent);
+}
+.btn-primary:hover{background:transparent;color:var(--accent);transform:translateY(-1px)}
+.btn-outline{
+  background:transparent;
+  color:var(--text);
+  border:1px solid var(--border2);
+}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+.hero-stats{
+  display:flex;gap:3rem;margin-top:3.5rem;
+  padding-top:2rem;
+  border-top:1px solid var(--border);
+  animation:fadeUp 0.6s 0.5s ease both;
+  flex-wrap:wrap;gap:2rem;
+}
+.stat-num{font-size:2rem;font-weight:700;color:var(--text);line-height:1}
+.stat-label{font-size:12px;color:var(--text2);font-family:var(--mono);margin-top:4px}
+
+/* ABOUT */
+#about{padding:6rem 0}
+.section-label{
+  font-family:var(--mono);font-size:12px;
+  color:var(--accent);letter-spacing:0.1em;
+  text-transform:uppercase;margin-bottom:0.75rem;
+}
+.section-title{
+  font-size:clamp(1.8rem,3vw,2.5rem);
+  font-weight:700;letter-spacing:-0.02em;
+  color:var(--text);margin-bottom:1.5rem;
+}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:3rem;align-items:start;
+}
+.about-text p{
+  color:var(--text2);line-height:1.85;margin-bottom:1rem;font-size:0.97rem;
+}
+.about-text p strong{color:var(--text)}
+.about-cards{display:flex;flex-direction:column;gap:1rem}
+.info-card{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:1.25rem 1.5rem;
+  display:flex;align-items:flex-start;gap:1rem;
+  transition:border-color var(--transition),transform var(--transition);
+}
+.info-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.info-card-icon{
+  width:38px;height:38px;
+  background:rgba(79,142,255,0.1);
+  border-radius:var(--radius);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.info-card-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+.info-card-sub{font-size:12px;color:var(--text2);font-family:var(--mono)}
+
+/* SKILLS */
+#skills{padding:6rem 0;background:var(--bg2)}
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1.5rem;margin-top:3rem;
+}
+.skill-cat{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:1.5rem;
+  transition:border-color var(--transition),transform var(--transition);
+}
+.skill-cat:hover{border-color:var(--border2);transform:translateY(-3px)}
+.skill-cat-header{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:1.25rem;
+  padding-bottom:1rem;
+  border-bottom:1px solid var(--border);
+}
+.skill-cat-icon{font-size:20px}
+.skill-cat-name{font-size:14px;font-weight:600;color:var(--text)}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px}
+.skill-tag{
+  font-family:var(--mono);font-size:11px;
+  padding:4px 10px;
+  background:rgba(79,142,255,0.08);
+  color:var(--accent);
+  border:1px solid rgba(79,142,255,0.2);
+  border-radius:999px;
+  transition:all var(--transition);
+}
+.skill-tag:hover{background:rgba(79,142,255,0.18);border-color:var(--accent)}
+.skill-tag.green{background:rgba(0,212,170,0.08);color:var(--accent2);border-color:rgba(0,212,170,0.2)}
+.skill-tag.green:hover{background:rgba(0,212,170,0.18);border-color:var(--accent2)}
+.skill-tag.red{background:rgba(255,107,107,0.08);color:var(--accent3);border-color:rgba(255,107,107,0.2)}
+
+/* EXPERIENCE */
+#experience{padding:6rem 0}
+.timeline{margin-top:3rem;position:relative}
+.timeline::before{
+  content:'';
+  position:absolute;left:18px;top:0;bottom:0;width:1px;
+  background:linear-gradient(to bottom,var(--accent),transparent);
+}
+.timeline-item{
+  display:flex;gap:2rem;
+  margin-bottom:2.5rem;
+  padding-left:0;
+  position:relative;
+}
+.timeline-dot{
+  width:38px;height:38px;
+  background:var(--bg3);
+  border:2px solid var(--accent);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-size:16px;
+  z-index:1;
+  transition:background var(--transition);
+}
+.timeline-item:hover .timeline-dot{background:var(--accent)}
+.timeline-body{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:1.5rem;
+  flex:1;
+  transition:border-color var(--transition);
+}
+.timeline-item:hover .timeline-body{border-color:var(--border2)}
+.timeline-top{
+  display:flex;justify-content:space-between;
+  align-items:flex-start;flex-wrap:wrap;gap:0.5rem;
+  margin-bottom:0.5rem;
+}
+.timeline-role{font-size:15px;font-weight:600;color:var(--text)}
+.timeline-period{
+  font-family:var(--mono);font-size:11px;
+  color:var(--accent2);
+  background:rgba(0,212,170,0.08);
+  border:1px solid rgba(0,212,170,0.2);
+  padding:3px 10px;border-radius:999px;
+  white-space:nowrap;
+}
+.timeline-company{font-size:13px;color:var(--accent);margin-bottom:1rem;font-weight:500}
+.timeline-bullets{list-style:none;display:flex;flex-direction:column;gap:6px}
+.timeline-bullets li{
+  font-size:13px;color:var(--text2);
+  padding-left:1.2rem;position:relative;line-height:1.65;
+}
+.timeline-bullets li::before{
+  content:'▸';
+  position:absolute;left:0;
+  color:var(--accent);font-size:11px;top:3px;
+}
+.timeline-bullets li strong{color:var(--text)}
+
+/* CERTIFICATIONS */
+#certifications{padding:6rem 0;background:var(--bg2)}
+.certs-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:1.25rem;margin-top:3rem;
+}
+.cert-card{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:1.25rem 1.5rem;
+  display:flex;align-items:center;gap:1rem;
+  transition:all var(--transition);
+  cursor:default;
+}
+.cert-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.cert-badge{
+  width:44px;height:44px;border-radius:var(--radius);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+}
+.cert-badge.azure{background:rgba(0,120,212,0.15)}
+.cert-badge.aws{background:rgba(255,153,0,0.15)}
+.cert-badge.nutanix{background:rgba(0,174,239,0.15)}
+.cert-badge.oracle{background:rgba(255,0,0,0.1)}
+.cert-badge.ms{background:rgba(0,120,212,0.15)}
+.cert-name{font-size:13px;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:3px}
+.cert-issuer{font-size:11px;color:var(--text2);font-family:var(--mono)}
+.cert-level{
+  margin-left:auto;
+  font-size:10px;font-family:var(--mono);
+  padding:3px 8px;border-radius:999px;
+  background:rgba(79,142,255,0.1);
+  color:var(--accent);
+  white-space:nowrap;flex-shrink:0;
+}
+
+/* PROJECTS */
+#projects{padding:6rem 0}
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:1.5rem;margin-top:3rem;
+}
+.project-card{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:1.5rem;
+  display:flex;flex-direction:column;gap:1rem;
+  transition:all var(--transition);
+}
+.project-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.project-header{display:flex;justify-content:space-between;align-items:flex-start}
+.project-icon{
+  width:42px;height:42px;
+  background:rgba(79,142,255,0.1);
+  border-radius:var(--radius);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+.project-tag{
+  font-family:var(--mono);font-size:10px;
+  padding:3px 10px;border-radius:999px;
+  background:rgba(0,212,170,0.1);
+  color:var(--accent2);
+  border:1px solid rgba(0,212,170,0.2);
+}
+.project-name{font-size:15px;font-weight:600;color:var(--text)}
+.project-desc{font-size:13px;color:var(--text2);line-height:1.7;flex:1}
+.project-stack{display:flex;flex-wrap:wrap;gap:5px}
+.stack-tag{
+  font-family:var(--mono);font-size:10px;
+  padding:3px 8px;border-radius:4px;
+  background:var(--surface);
+  color:var(--text3);
+  border:1px solid var(--border);
+}
+
+/* CONTACT */
+#contact{padding:6rem 0;background:var(--bg2)}
+.contact-inner{
+  max-width:600px;margin:0 auto;text-align:center;
+}
+.contact-inner .section-label{justify-content:center;display:flex}
+.contact-inner .section-title{margin-bottom:1rem}
+.contact-desc{color:var(--text2);font-size:0.97rem;margin-bottom:2.5rem;line-height:1.8}
+.contact-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.contact-info{
+  display:flex;align-items:center;justify-content:center;gap:0.5rem;
+  font-family:var(--mono);font-size:13px;
+  color:var(--text2);margin-top:2rem;
+}
+
+/* FOOTER */
+footer{
+  background:var(--bg);
+  border-top:1px solid var(--border);
+  padding:2rem;
+  text-align:center;
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--text3);
+  position:relative;z-index:1;
+}
+footer span{color:var(--accent2)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.reveal{
+  opacity:0;transform:translateY(30px);
+  transition:opacity 0.6s ease,transform 0.6s ease;
+}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .about-grid{grid-template-columns:1fr}
+  .hero-stats{gap:1.5rem}
+  .timeline::before{left:14px}
+  .timeline-dot{width:30px;height:30px;font-size:14px}
+  .container{padding:0 1.25rem}
+  .projects-grid{grid-template-columns:1fr}
+  .certs-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">rv<span>.dev</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">☀</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#experience" onclick="closeMobile()">Experience</a>
+  <a href="#certifications" onclick="closeMobile()">Certifications</a>
+  <a href="#projects" onclick="closeMobile()">Projects</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-tag">
+        <span></span>
+        Available for Cloud & SRE roles — Bengaluru, India
+      </div>
+      <h1 class="hero-name">Roshan <span>Vatsya</span></h1>
+      <div class="hero-role">// Cloud & Infrastructure Engineer · Aspiring SRE</div>
+      <p class="hero-desc">
+        4+ years building and stabilising enterprise infrastructure at scale. I manage systems so they don't fail quietly — and automate everything that shouldn't need a human.
+      </p>
+      <div class="hero-cta">
+        <a href="#experience" class="btn btn-primary">View Experience →</a>
+        <a href="mailto:roshanvatsya123@gmail.com" class="btn btn-outline">Get in Touch</a>
+        <a href="https://www.linkedin.com/in/roshanvatsya" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">4+</div>
+          <div class="stat-label">years experience</div>
+        </div>
+        <div>
+          <div class="stat-num">7K+</div>
+          <div class="stat-label">servers managed</div>
+        </div>
+        <div>
+          <div class="stat-num">9</div>
+          <div class="stat-label">certifications</div>
+        </div>
+        <div>
+          <div class="stat-num">~30%</div>
+          <div class="stat-label">automation savings</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label reveal">01 — about me</div>
+    <h2 class="section-title reveal">Who I Am</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I've spent the last 4+ years making sure large-scale IT infrastructure actually works — and doesn't wake people up at 3am.</p>
+        <p>At <strong>Atos</strong>, I managed <strong>7,000+ Windows servers</strong> for healthcare enterprise clients, led Nutanix AHV/AOS upgrades across <strong>400+ hosts</strong>, and built PowerShell automation that reduced manual effort by approximately <strong>30%</strong>.</p>
+        <p>At <strong>Kaseya</strong>, I deliver global L2 support for the Pulseway RMM platform — diagnosing complex endpoint failures, building automation workflows, and improving monitoring reliability across enterprise environments worldwide.</p>
+        <p>My focus has shifted from fixing issues to preventing them altogether. I'm particularly interested in <strong>cloud infrastructure, automation, and SRE practices</strong> — building systems that are resilient, observable, and efficient.</p>
+        <p>Outside of work, I've been recognised as an <strong>Innovation Ambassador</strong> and an Atos Xpress Award recipient. Good ideas matter as much as good execution.</p>
+      </div>
+      <div class="about-cards reveal">
+        <div class="info-card">
+          <div class="info-card-icon">📍</div>
+          <div>
+            <div class="info-card-title">Location</div>
+            <div class="info-card-sub">Bengaluru, Karnataka, India</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">🎓</div>
+          <div>
+            <div class="info-card-title">Education</div>
+            <div class="info-card-sub">B.Tech CSE · RTU Kota · 2021</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">🎯</div>
+          <div>
+            <div class="info-card-title">Target Roles</div>
+            <div class="info-card-sub">Cloud Engineer · SRE · Infra Engineer</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">✉️</div>
+          <div>
+            <div class="info-card-title">Email</div>
+            <div class="info-card-sub">roshanvatsya123@gmail.com</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">🏆</div>
+          <div>
+            <div class="info-card-title">Awards</div>
+            <div class="info-card-sub">Innovation Ambassador · Atos Xpress · SPOT × 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label reveal">02 — technical skills</div>
+    <h2 class="section-title reveal">What I Work With</h2>
+    <div class="skills-grid">
+      <div class="skill-cat reveal">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon">☁️</div>
+          <div class="skill-cat-name">Cloud Platforms</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Microsoft Azure</span>
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">Nutanix AHV/AOS</span>
+          <span class="skill-tag">Oracle Cloud</span>
+          <span class="skill-tag">Azure VMs</span>
+          <span class="skill-tag">Azure Monitor</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon">🖥️</div>
+          <div class="skill-cat-name">Infrastructure</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag green">Windows Server 2012–2022</span>
+          <span class="skill-tag green">VMware vCenter</span>
+          <span class="skill-tag green">vMotion</span>
+          <span class="skill-tag green">Active Directory</span>
+          <span class="skill-tag green">GPO</span>
+          <span class="skill-tag green">DNS / DHCP</span>
+          <span class="skill-tag green">Citrix</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon">⚙️</div>
+          <div class="skill-cat-name">Automation & Scripting</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">PowerShell</span>
+          <span class="skill-tag">Bash</span>
+          <span class="skill-tag">Scheduled Tasks</span>
+          <span class="skill-tag">Auto-Remediation</span>
+          <span class="skill-tag">Patch Automation</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon">📊</div>
+          <div class="skill-cat-name">Monitoring & RMM</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag red">Pulseway / VSAX</span>
+          <span class="skill-tag red">Datto RMM</span>
+          <span class="skill-tag red">SolarWinds</span>
+          <span class="skill-tag red">ControlUP</span>
+          <span class="skill-tag red">Tenable</span>
+          <span class="skill-tag red">ServiceNow</span>
+          <span class="skill-tag red">Zendesk</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon">🔐</div>
+          <div class="skill-cat-name">Security & Access</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">CyberArk</span>
+          <span class="skill-tag">Tenable</span>
+          <span class="skill-tag">IDRAC / ILO</span>
+          <span class="skill-tag">Infoblox</span>
+          <span class="skill-tag">KeePass</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon">🌐</div>
+          <div class="skill-cat-name">Networking & ITSM</div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag green">TCP/IP</span>
+          <span class="skill-tag green">DNS / DHCP</span>
+          <span class="skill-tag green">ServiceNow CMDB</span>
+          <span class="skill-tag green">Incident Management</span>
+          <span class="skill-tag green">RCA</span>
+          <span class="skill-tag green">Change Mgmt</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label reveal">03 — work history</div>
+    <h2 class="section-title reveal">Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot">💼</div>
+        <div class="timeline-body">
+          <div class="timeline-top">
+            <div class="timeline-role">Technical Support Expert – RMM (Pulseway)</div>
+            <div class="timeline-period">2024 – Present</div>
+          </div>
+          <div class="timeline-company">Kaseya · Bengaluru, India</div>
+          <ul class="timeline-bullets">
+            <li>Delivered <strong>L1/L2 global support</strong> for Pulseway/VSAX RMM across Windows, Linux, and macOS enterprise endpoints, maintaining SLA compliance via ServiceNow and Zendesk.</li>
+            <li>Engineered PowerShell automation workflows and auto-remediation rules, cutting manual intervention by an estimated <strong>~30%</strong>.</li>
+            <li>Diagnosed and resolved patch management failures — update deployment errors, agent sync issues, policy misconfigurations — measurably improving patch success rates.</li>
+            <li>Designed <strong>real-time monitoring dashboards</strong> aligned to customer KPIs, reducing false positives and improving operational transparency.</li>
+            <li>Performed root cause analysis (RCA) using system and application logs; deployed long-term fixes reducing repeat incidents for global clients.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot">🏢</div>
+        <div class="timeline-body">
+          <div class="timeline-top">
+            <div class="timeline-role">Senior Associate Engineer</div>
+            <div class="timeline-period">2023 – 2024</div>
+          </div>
+          <div class="timeline-company">Atos Global IT Solutions · Pune, India</div>
+          <ul class="timeline-bullets">
+            <li>Managed infrastructure for <strong>7,000+ Windows servers</strong> (physical, virtual, Azure cloud) for large enterprise Healthcare clients.</li>
+            <li>Led Nutanix AHV/AOS upgrades across <strong>400+ hosts</strong>; executed vCenter operations including vMotion, snapshots, cloning, and P2V migrations.</li>
+            <li>Achieved and sustained <strong>95%+ CMDB compliance</strong> in ServiceNow as SPOC for SolarWinds monitoring.</li>
+            <li>Represented Windows team in P1–P5 critical incident bridge calls; coordinated DR testing across <strong>2 data centres and 7 vCenters</strong>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot">⚡</div>
+        <div class="timeline-body">
+          <div class="timeline-top">
+            <div class="timeline-role">Associate Engineer</div>
+            <div class="timeline-period">2022 – 2023</div>
+          </div>
+          <div class="timeline-company">Atos Global IT Solutions · Pune, India</div>
+          <ul class="timeline-bullets">
+            <li>Deployed and configured Windows Servers (2016, 2019, 2022) and supported hybrid Azure environments; automated server builds using PowerShell.</li>
+            <li>Maintained Active Directory, GPO, DNS, DHCP, and RDS environments for <strong>7,000+ end users and devices</strong>.</li>
+            <li>Executed system upgrades, decommissioning, compliance reporting, and capacity management projects.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot">🚀</div>
+        <div class="timeline-body">
+          <div class="timeline-top">
+            <div class="timeline-role">Systems Engineer</div>
+            <div class="timeline-period">Oct 2021 – 2022</div>
+          </div>
+          <div class="timeline-company">Atos Global IT Solutions · Pune, India</div>
+          <ul class="timeline-bullets">
+            <li>Delivered L1/L2 infrastructure support across Windows Server environments; managed incidents and change management P1–P5.</li>
+            <li>Applied PowerShell scripting for daily operational tasks; gained hands-on experience with Azure, VMware, and Nutanix in production.</li>
+            <li>Collaborated with hardware vendors (Dell, Nutanix, HP, Cisco) to troubleshoot and replace faulty infrastructure units.</li>
+            <li>Administered Active Directory — user accounts, distribution lists, password resets, SAAR requests — for 7,000+ users.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-label reveal">04 — certifications</div>
+    <h2 class="section-title reveal">9 Industry Certifications</h2>
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <div class="cert-badge azure">🔷</div>
+        <div>
+          <div class="cert-name">Azure Administrator Associate</div>
+          <div class="cert-issuer">Microsoft · AZ-104</div>
+        </div>
+        <div class="cert-level">Associate</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge azure">🔷</div>
+        <div>
+          <div class="cert-name">DevOps Engineer Expert</div>
+          <div class="cert-issuer">Microsoft · AZ-400</div>
+        </div>
+        <div class="cert-level">Expert</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge azure">🔵</div>
+        <div>
+          <div class="cert-name">Azure Fundamentals</div>
+          <div class="cert-issuer">Microsoft · AZ-900</div>
+        </div>
+        <div class="cert-level">Fundamentals</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge ms">🔒</div>
+        <div>
+          <div class="cert-name">Security Fundamentals</div>
+          <div class="cert-issuer">Microsoft Technology Associate</div>
+        </div>
+        <div class="cert-level">Associate</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge aws">🟠</div>
+        <div>
+          <div class="cert-name">AWS Cloud Practitioner</div>
+          <div class="cert-issuer">Amazon Web Services</div>
+        </div>
+        <div class="cert-level">Foundational</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge nutanix">🔵</div>
+        <div>
+          <div class="cert-name">Nutanix Certified Associate</div>
+          <div class="cert-issuer">Nutanix · NCA 6.5</div>
+        </div>
+        <div class="cert-level">Associate</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge nutanix">☁️</div>
+        <div>
+          <div class="cert-name">Enterprise Cloud Administration</div>
+          <div class="cert-issuer">Nutanix · ECA</div>
+        </div>
+        <div class="cert-level">Professional</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge oracle">🔴</div>
+        <div>
+          <div class="cert-name">OCI Foundation Associate</div>
+          <div class="cert-issuer">Oracle Cloud · 2021</div>
+        </div>
+        <div class="cert-level">Foundational</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge ms">📋</div>
+        <div>
+          <div class="cert-name">Harvard Project Management</div>
+          <div class="cert-issuer">Great Learning</div>
+        </div>
+        <div class="cert-level">Certificate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label reveal">05 — projects</div>
+    <h2 class="section-title reveal">Infrastructure & Automation Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-icon">⚡</div>
+          <div class="project-tag">PowerShell</div>
+        </div>
+        <div class="project-name">Server Health Automation Suite</div>
+        <div class="project-desc">Automated daily health checks across 7,000+ Windows servers using PowerShell. Replaced manual verification with scheduled scripts that generate reports, flag anomalies, and trigger alerts — reducing manual effort by ~30%.</div>
+        <div class="project-stack">
+          <span class="stack-tag">PowerShell</span>
+          <span class="stack-tag">Windows Server</span>
+          <span class="stack-tag">Task Scheduler</span>
+          <span class="stack-tag">ServiceNow</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-icon">📊</div>
+          <div class="project-tag">RMM</div>
+        </div>
+        <div class="project-name">RMM Monitoring Policy Overhaul</div>
+        <div class="project-desc">Redesigned monitoring alert policies and escalation paths in Pulseway RMM for enterprise clients. Reduced false-positive alert noise significantly and built custom real-time dashboards aligned to client KPIs.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Pulseway</span>
+          <span class="stack-tag">VSAX</span>
+          <span class="stack-tag">Alert Tuning</span>
+          <span class="stack-tag">Dashboard Design</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-icon">🔄</div>
+          <div class="project-tag">Nutanix</div>
+        </div>
+        <div class="project-name">Nutanix AHV/AOS Upgrade Programme</div>
+        <div class="project-desc">Led end-to-end Nutanix AHV/AOS upgrades across 400+ hosts for a healthcare enterprise client. Coordinated cross-team scheduling, pre/post validation, and rollback procedures to achieve zero unplanned downtime.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Nutanix AHV</span>
+          <span class="stack-tag">Prism Central</span>
+          <span class="stack-tag">vCenter</span>
+          <span class="stack-tag">Change Mgmt</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-icon">🛡️</div>
+          <div class="project-tag">DR Testing</div>
+        </div>
+        <div class="project-name">Disaster Recovery & CMDB Compliance</div>
+        <div class="project-desc">Managed security operations with Tenable and coordinated DR testing across 2 data centres and 7 vCenters. Achieved and maintained 95%+ CMDB compliance in ServiceNow as team SPOC for SolarWinds monitoring.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Tenable</span>
+          <span class="stack-tag">SolarWinds</span>
+          <span class="stack-tag">ServiceNow</span>
+          <span class="stack-tag">VMware</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-icon">☁️</div>
+          <div class="project-tag">Azure</div>
+        </div>
+        <div class="project-name">Hybrid Azure Infrastructure Management</div>
+        <div class="project-desc">Managed and monitored hybrid Azure environments for enterprise clients — Azure VMs, virtual networks, storage, and identity (Azure AD). Applied ARM-based policies and built monitoring using Azure Monitor and Log Analytics.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Azure</span>
+          <span class="stack-tag">Azure AD</span>
+          <span class="stack-tag">Azure Monitor</span>
+          <span class="stack-tag">PowerShell</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-icon">🔧</div>
+          <div class="project-tag">Patch Mgmt</div>
+        </div>
+        <div class="project-name">Endpoint Patch Management Optimisation</div>
+        <div class="project-desc">Diagnosed and resolved recurring patch failures across enterprise RMM environments. Built structured remediation workflows and documentation that improved patch success rates and reduced repeat support tickets.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Datto RMM</span>
+          <span class="stack-tag">Pulseway</span>
+          <span class="stack-tag">PowerShell</span>
+          <span class="stack-tag">Zendesk</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="section-label reveal">06 — get in touch</div>
+      <h2 class="section-title reveal">Let's Connect</h2>
+      <p class="contact-desc reveal">
+        I'm actively exploring Cloud Engineer, SRE, and Infrastructure Engineer roles. If you're hiring or want to talk infrastructure, automation, or cloud — I'd love to hear from you.
+      </p>
+      <div class="contact-buttons reveal">
+        <a href="mailto:roshanvatsya123@gmail.com" class="btn btn-primary">📧 Send Email</a>
+        <a href="https://www.linkedin.com/in/roshanvatsya" target="_blank" class="btn btn-outline">LinkedIn Profile ↗</a>
+      </div>
+      <div class="contact-info reveal">
+        <span>📍 Bengaluru, India</span>
+        <span style="color:var(--border2)">·</span>
+        <span>roshanvatsya123@gmail.com</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built by <span>Roshan Vatsya</span> · Cloud & Infrastructure Engineer · Bengaluru 2025
+</footer>
+
+<script>
+// Theme toggle
+function toggleTheme(){
+  const html=document.documentElement;
+  const current=html.getAttribute('data-theme');
+  html.setAttribute('data-theme',current==='dark'?'light':'dark');
+  document.querySelector('.theme-toggle').textContent=current==='dark'?'🌙':'☀';
+}
+
+// Mobile menu
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMobile(){
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// Scroll reveal
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+    }
+  });
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+
+document.querySelectorAll('.reveal').forEach((el,i)=>{
+  el.style.transitionDelay=(i%4)*0.08+'s';
+  observer.observe(el);
+});
+
+// Smooth active nav highlight
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{
+    if(window.scrollY>=s.offsetTop-120)current=s.id;
+  });
+  navLinks.forEach(a=>{
+    a.style.color=a.getAttribute('href')==='#'+current?'var(--accent)':'';
+  });
+});
+</script>
+</body>
+</html>
